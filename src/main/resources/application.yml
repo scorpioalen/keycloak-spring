@@ -1,0 +1,32 @@
+server:
+  port: 8701
+
+# OAuth 2.0
+keycloak:
+  auth-server-url: http://localhost:18080/auth
+  realm: test
+  resource: backend
+  cors: true
+  ssl-required: external
+  bearer-only: true
+  use-resource-role-mappings: false
+  credentials:
+    secret: 1b403874-d851-45b2-914b-513f168c541d
+  securityConstraints:
+    - securityCollections:
+        - name: Not secured
+          patterns:
+            - /index.html
+    - authRoles:
+        - user
+      securityCollections:
+        - name: Secured user
+          patterns:
+            - /user/*
+    - authRoles:
+        - admin
+      securityCollections:
+        - name: Secured admin
+          patterns:
+            - /admin/*
+  enabled: true

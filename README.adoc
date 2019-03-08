@@ -1,0 +1,50 @@
+### Keycloak Spring Integration
+
+## Features
+- REST APIs
+- OAuth2.0 Keycloak
+- Java 11
+- Spring Boot 2.1.3.RELEASE
+
+## Installation
+    ./gradlew clean build
+
+## Information
+
+    Two secured APIs
+        - /admin/test
+        - /user/test
+
+    One public (unsecured API)
+        - /public/test
+
+    Auth url:
+    http://localhost:18080/auth/realms/test/protocol/openid-connect/auth
+
+    Access token URL:
+    http://localhost:18080/auth/realms/test/protocol/openid-connect/token
+
+## Keycloak configuration
+    Create realm (test)
+
+    Create confidential client (backend) and set Access Type to confidential
+        - Enable Service Accounts Enabled
+        - Set Valid Redirect URIs and Web Origins to *
+    Create public client (client-public)
+        - Set Access type to public
+        - Set Valid Redirect URIs and Web Origins to *
+
+    Create realm roles (admin and user)
+
+    Create users (admin and user)
+    Select user admin and under Role Mappings assign role admin
+    Select user user and under Role Mappings assign role user
+
+## Application configuration
+
+Inside application.properties Change *credentials.secret* based on *backend* client configuration inside Keycloak.
+
+## Extras
+
+- Keycloak doesn't allow "bearer only" clients to obtain tokens from the server.
+  Change your client to "confidential" on the server and set bearer-only on your adapter configuration.

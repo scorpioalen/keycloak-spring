@@ -1,0 +1,9 @@
+### Keycloak 4.8.4 with Postgres 10 DB
+
+Commands:
+
+    docker-compose up --build -d
+
+    docker-compose logs -f
+
+    docker-compose down
