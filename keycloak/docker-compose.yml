@@ -24,8 +24,8 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
     ports:
-      - 18080:8080
-      - 18443:8443
+      - 18080:8080 # http
+      - 18443:8443 # https
     depends_on:
       - keycloak_db
     volumes:

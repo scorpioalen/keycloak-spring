@@ -7,22 +7,15 @@
 - Spring Boot 2.1.3.RELEASE
 
 ## Installation
-    ./gradlew clean build
+    Keycloak + DB setup:
+        Run docker-compose.yml inside keycloak directory
 
-## Information
+    Build application:
+        ./gradlew clean build
 
-    Two secured APIs
-        - /admin/test
-        - /user/test
+    Run application
 
-    One public (unsecured API)
-        - /public/test
-
-    Auth url:
-    http://localhost:18080/auth/realms/test/protocol/openid-connect/auth
-
-    Access token URL:
-    http://localhost:18080/auth/realms/test/protocol/openid-connect/token
+    Application is running on port: 8701
 
 ## Keycloak configuration
     Create realm (test)
@@ -40,11 +33,35 @@
     Select user admin and under Role Mappings assign role admin
     Select user user and under Role Mappings assign role user
 
+## REST API Application
+
+    Two secured APIs
+        - /admin/test
+        - /user/test
+
+    One public (unsecured API)
+        - /public/test
+
 ## Application configuration
 
 Inside application.properties Change *credentials.secret* based on *backend* client configuration inside Keycloak.
+
+## Postman - Get token
+
+Under authorization select OAuth 2.0 and click "Get New Access Token".
+
+    Auth url:
+    http://localhost:18080/auth/realms/test/protocol/openid-connect/auth
+
+    Access token URL:
+    http://localhost:18080/auth/realms/test/protocol/openid-connect/token
+
+image::/assets/postman_1.png[]
+
 
 ## Extras
 
 - Keycloak doesn't allow "bearer only" clients to obtain tokens from the server.
   Change your client to "confidential" on the server and set bearer-only on your adapter configuration.
+
+- Usually we would use "bearer only" for REST API applications.
